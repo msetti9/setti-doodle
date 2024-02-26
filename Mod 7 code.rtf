@@ -1,0 +1,39 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww28600\viewh18000\viewkind0
+\deftab560
+\pard\pardeftab560\slleading20\partightenfactor0
+
+\f0\fs24 \cf0 #Creating and Modifying dataset1\
+dataset1 <- list(name="Lecrec", drivernumber=16, position="leaddriver")\
+print(dataset1)\
+\
+\
+#Assigning a New Class to dataset1\
+class(dataset1) <- "formula1_driver"\
+\
+#Defining and Creating an S4 Class\
+setClass("formula1", representation( name = "character", drivernumber = "numeric", position = "character") )\
+dataset2 <- new("formula1", name="Lecrec", drivernumber=16, position="leaddriver")\
+\
+#Defining a Custom Print Method for 'formula1_driver'\
+print.formula1_driver <- function(driver) \{cat(driver$name, "wears number", driver$drivernumber, "on the back of his jersey. He plays the position of", driver$position)\}\
+print(dataset1)\
+\
+\
+#Defining a Custom Show Method\
+setMethod("show", "formula1",function(object) \{cat(object@name, "wears #", object@drivernumber)\})\
+print(dataset2)\
+\
+\
+#Determining Object's OO System using otype() from 'pryr'\
+library(pryr)\
+otype(dataset1)\
+otype(dataset2)\
+\
+\
+#Determining the Type of Object's Attributes\
+typeof(dataset1$name)\
+typeof(dataset2@drivernumber)}
